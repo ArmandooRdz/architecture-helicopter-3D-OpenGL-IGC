@@ -33,13 +33,14 @@ double rotate_x = 0;
 void drawBodyCentral(){
     
     
-    //Side front
+    //Side front - Gray
     glBegin(GL_POLYGON);
     glColor3f(0.50, 0.50, 0.50);
     glVertex3f(-0.10, -0.25, -0.25); 
     glVertex3f(0.0, 0.0, -0.25); 
     glVertex3f(0.0, 0.25, -0.25); 
     glVertex3f(-0.50, 0.25, -0.25); 
+    glVertex3f(-0.65, 0.0, -0.25);
     glVertex3f(-0.50, -0.25, -0.25); 
     glEnd();
 
@@ -50,6 +51,7 @@ void drawBodyCentral(){
     glVertex3f(0.0, 0.0, 0.10);
     glVertex3f(0.0, 0.25, 0.10);
     glVertex3f(-0.50, 0.25, 0.10);
+    glVertex3f(-0.65, 0.0, 0.10);
     glVertex3f(-0.50, -0.25, 0.10);
     glEnd();
 
@@ -90,8 +92,8 @@ void drawBodyCentral(){
     //Side down - Red
     glBegin(GL_POLYGON);
     glColor3f(1.0, 0.0, 0.0);
-    glVertex3f(0.0, -0.25, -0.25);
-    glVertex3f(0.0, -0.25, 0.10);
+    glVertex3f(-0.10, -0.25, -0.25);
+    glVertex3f(-0.10, -0.25, 0.10);
     glVertex3f(-0.50, -0.25, 0.10);
     glVertex3f(-0.50, -0.25, -0.25);
     glEnd();
