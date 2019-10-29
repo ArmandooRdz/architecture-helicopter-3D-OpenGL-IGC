@@ -31,7 +31,7 @@ double rotate_y = -10;
  * DIbujado del centro del cuerpo del helicuptero.
  **/
 void drawBodyCentral(){
-    //Side front - Gray
+    // Side front - Gray
     glBegin(GL_POLYGON);
     glColor3f(0.50, 0.50, 0.50);
     glVertex3f(-0.10, -0.20, -0.23); 
@@ -42,7 +42,7 @@ void drawBodyCentral(){
     glVertex3f(-0.50, -0.20, -0.25); 
     glEnd();
 
-    //Side back - White
+    // Side back - White
     glBegin(GL_POLYGON);
     glColor3f(1.0, 1.0, 1.0);
     glVertex3f(-0.10, -0.20, 0.03);
@@ -53,7 +53,7 @@ void drawBodyCentral(){
     glVertex3f(-0.50, -0.20, 0.05);
     glEnd();
 
-    //Side rigth - Purple
+    // Side rigth - Purple
     glBegin(GL_POLYGON);
     glColor3f(1.0, 0.0, 1.0); 
     glVertex3f(0.0, 0.0, -0.23);
@@ -64,7 +64,7 @@ void drawBodyCentral(){
     glVertex3f(-0.10, -0.20, -0.23);
     glEnd();
 
-    //Side left - Green
+    // Side left - Green
     glBegin(GL_POLYGON);
     glColor3f(0.0, 1.0, 0.0);
     glVertex3f(-0.65, 0.0, 0.05);
@@ -75,7 +75,7 @@ void drawBodyCentral(){
     glVertex3f(-0.50, -0.20, 0.05);
     glEnd();
 
-    //Side up - Blue
+    // Side up - Blue
     glBegin(GL_POLYGON);
     glColor3f(0.0, 0.0, 1.0);
     glVertex3f(0.0, 0.25, 0.03);
@@ -84,7 +84,7 @@ void drawBodyCentral(){
     glVertex3f(-0.50, 0.25, 0.05);
     glEnd();
 
-    //Side down - Red
+    // Side down - Red
     glBegin(GL_POLYGON);
     glColor3f(1.0, 0.0, 0.0);
     glVertex3f(-0.10, -0.20, -0.23);
@@ -118,7 +118,7 @@ void drawTail(){
     glVertex3f(0.6, 0.1, -0.05);
     glEnd();
 
-    //down - purple
+    // down - purple
     glBegin(GL_POLYGON);
     glColor3f(0.4, 0.1, 0.6);
     glVertex3f(0.0, 0.0, -0.23);
@@ -127,7 +127,7 @@ void drawTail(){
     glVertex3f(0.6, 0.1, -0.15);
     glEnd();
 
-    //up - yellow
+    // up - yellow
     glBegin(GL_POLYGON);
     glColor3f(0.9, 0.7, 0.1);
     glVertex3f(0.0, 0.25, -0.23);
@@ -136,8 +136,18 @@ void drawTail(){
     glVertex3f(0.6, 0.25, -0.15);
     glEnd();
 
-}
 
+    // Objeto No.3 del pdf 
+    // front - blue
+    glBegin(GL_POLYGON);
+    glColor3f(0.2, 0.2, 0.5);
+    glVertex3f(0.6, 0.25, -0.15);
+    glVertex3f(0.6, 0.1, -0.15);
+    glVertex3f(0.8, 0.1, -0.12);
+    glVertex3f(0.85, 0.4, -0.12);
+    glEnd();
+
+}
 
 void display()
 {
@@ -157,8 +167,7 @@ void display()
     glutSwapBuffers();
 }
 
-void KeyInput(unsigned char key, int x, int y)
-{
+void KeyInput(unsigned char key, int x, int y){
     switch (key)
     {
     case 'w':
