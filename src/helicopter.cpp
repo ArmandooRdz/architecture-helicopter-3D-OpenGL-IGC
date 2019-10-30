@@ -1,5 +1,6 @@
 /**
- * @author Armando Rodríguez
+ * @version 1.0
+ * @author Armando Rodríguez Hdz
  * @Description Modelado 3D de un helicoptero para la materia Intro. Graficación por Computadora
  * como práctica No. 4.
  * 
@@ -28,9 +29,10 @@ double rotate_y = -10;
 
 
 /**
- * DIbujado del centro del cuerpo del helicuptero.
+ * Dibujado del centro del cuerpo del helicuptero.
  **/
 void drawBodyCentral(){
+
     // Side front - Gray
     glBegin(GL_POLYGON);
     glColor3f(0.50, 0.50, 0.50);
@@ -95,6 +97,7 @@ void drawBodyCentral(){
 
 }
 
+
 /**
  * Dibujado de la parte trasera del helicopero
  **/
@@ -106,7 +109,7 @@ void drawTail(){
     glVertex3f(0.0, 0.0, -0.23);
     glVertex3f(0.0, 0.25, -0.23);
     glVertex3f(0.6, 0.25, -0.15);
-    glVertex3f(0.6, 0.1, -0.15);
+    glVertex3f(0.6, 0.15, -0.15);
     glEnd();
 
     // back - green
@@ -115,7 +118,7 @@ void drawTail(){
     glVertex3f(0.0, 0.0, 0.03);
     glVertex3f(0.0, 0.25, 0.03);
     glVertex3f(0.6, 0.25, -0.05);
-    glVertex3f(0.6, 0.1, -0.05);
+    glVertex3f(0.6, 0.15, -0.05);
     glEnd();
 
     // down - purple
@@ -123,8 +126,8 @@ void drawTail(){
     glColor3f(0.4, 0.1, 0.6);
     glVertex3f(0.0, 0.0, -0.23);
     glVertex3f(0.0, 0.0, 0.03);
-    glVertex3f(0.6, 0.1, -0.05);
-    glVertex3f(0.6, 0.1, -0.15);
+    glVertex3f(0.6, 0.15, -0.05);
+    glVertex3f(0.6, 0.15, -0.15);
     glEnd();
 
     // up - yellow
@@ -140,17 +143,96 @@ void drawTail(){
     // Objeto No.3 del pdf 
     // front - blue
     glBegin(GL_POLYGON);
-    glColor3f(0.2, 0.2, 0.5);
+    glColor3f(0.2, 0.2, 0.7);
     glVertex3f(0.6, 0.25, -0.15);
-    glVertex3f(0.6, 0.1, -0.15);
-    glVertex3f(0.8, 0.1, -0.12);
-    glVertex3f(0.85, 0.4, -0.12);
+    glVertex3f(0.6, 0.15, -0.15);
+    glVertex3f(0.75, 0.15, -0.10);
+    glVertex3f(0.8, 0.4, -0.10);
+    glVertex3f(0.7, 0.4, -0.10);
+    glEnd();
+
+    // back -  blue
+    glBegin(GL_POLYGON);
+    glColor3f(0.2, 0.2, 0.7);
+    glVertex3f(0.6, 0.25, -0.05);
+    glVertex3f(0.6, 0.15, -0.05);
+    glVertex3f(0.75, 0.15, -0.10);
+    glVertex3f(0.8, 0.4, -0.10);
+    glVertex3f(0.7, 0.4, -0.10);
+    glEnd();
+
+    // up - white
+    glBegin(GL_POLYGON);
+    glColor3f(0.8, 0.8, 0.8);
+    glVertex3f(0.6, 0.25, -0.05);
+    glVertex3f(0.6, 0.25, -0.15);
+    glVertex3f(0.7, 0.4, -0.10);
+    glEnd();
+
+    // down - gray
+    glBegin(GL_POLYGON);
+    glColor3f(0.5, 0.5, 0.5);
+    glVertex3f(0.6, 0.15, -0.05);
+    glVertex3f(0.6, 0.15, -0.15);
+    glVertex3f(0.75, 0.15, -0.10);
     glEnd();
 
 }
 
-void display()
-{
+
+/**
+ *  Dibujado de la base de las hélices 
+ **/
+void drawHelixBase(){
+
+    // up - red
+    glBegin(GL_POLYGON);
+    glColor3f(0.8, 0.1, 0.1);
+    glVertex3f(-0.15, 0.29, -0.017);
+    glVertex3f(-0.15, 0.29, -0.17);
+    glVertex3f(-0.35, 0.29, -0.18);
+    glVertex3f(-0.35, 0.29, -0.017);
+    glEnd();
+
+    // left - white
+    glBegin(GL_POLYGON);
+    glColor3f(0.9, 0.9, 0.9);
+    glVertex3f(-0.35, 0.29, -0.18);
+    glVertex3f(-0.35, 0.29, -0.017);
+    glVertex3f(-0.38, 0.25, 0.007);
+    glVertex3f(-0.38, 0.25, -0.20);
+    glEnd();
+
+    // right - purple
+    glBegin(GL_POLYGON);
+    glColor3f(0.7, 0.2, 0.9);
+    glVertex3f(-0.15, 0.29, -0.18);
+    glVertex3f(-0.15, 0.29, -0.017);
+    glVertex3f(-0.12, 0.25, 0.007);
+    glVertex3f(-0.12, 0.25, -0.18);
+    glEnd();
+
+    // back - green
+    glBegin(GL_POLYGON);
+    glColor3f(0.1, 0.9, 0.2);
+    glVertex3f(-0.35, 0.29, -0.017);
+    glVertex3f(-0.38, 0.25, 0.007);
+    glVertex3f(-0.12, 0.25, 0.007);
+    glVertex3f(-0.15, 0.29, -0.017);
+    glEnd();
+
+    // front - yellow
+    glBegin(GL_POLYGON);
+    glColor3f(0.9, 0.6, 0.0);
+    glVertex3f(-0.15, 0.29, -0.17);
+    glVertex3f(-0.35, 0.29, -0.18);
+    glVertex3f(-0.38, 0.25, -0.20);
+    glVertex3f(-0.12, 0.25, -0.18);
+    glEnd();
+}
+
+void display(){
+
     //  Borrar pantalla y Z-buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     // Resetear transformaciones
@@ -160,8 +242,8 @@ void display()
     glRotatef(rotate_y, 0.0, 1.0, 0.0);
 
     drawBodyCentral();
-
     drawTail();
+    drawHelixBase();
 
     glFlush();
     glutSwapBuffers();
@@ -197,8 +279,7 @@ void interactionDescription(){
     cout << "Press [Escape] to exit" << endl;
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     interactionDescription();
     //  Inicializar los parámetros GLUT y de usuario proceso
     glutInit(&argc, argv);
