@@ -208,8 +208,8 @@ void drawHelixBase(){
     glColor3f(0.7, 0.2, 0.9);
     glVertex3f(-0.15, 0.29, -0.18);
     glVertex3f(-0.15, 0.29, -0.017);
-    glVertex3f(-0.12, 0.25, 0.007);
-    glVertex3f(-0.12, 0.25, -0.18);
+    glVertex3f(-0.12, 0.25, 0.01);
+    glVertex3f(-0.12, 0.25, -0.19);
     glEnd();
 
     // back - green
@@ -227,9 +227,41 @@ void drawHelixBase(){
     glVertex3f(-0.15, 0.29, -0.17);
     glVertex3f(-0.35, 0.29, -0.18);
     glVertex3f(-0.38, 0.25, -0.20);
-    glVertex3f(-0.12, 0.25, -0.18);
+    glVertex3f(-0.12, 0.25, -0.19);
     glEnd();
 }
+
+
+/**
+ * Dibujado de las hélices con un cilindro en el centro.
+ */
+void drawHelixes(){
+
+    // Cilindro central
+   glBegin(GL_QUAD_STRIP);
+    for(int j = 0; j < 360; j+=1){
+        glColor3f(1.0, 1.0, 0.0);
+        glVertex3f((cos(j)/24)-0.25,0.20, (sin(j)/24)-0.1);
+        glColor3f(0.0, 1.0, 0.0);
+        glVertex3f((cos(j)/24)-0.25,0.35, (sin(j)/24)-0.1);
+    }
+    glEnd();
+    for(int i = 0; i >= -1; i-=2){
+        glBegin(GL_TRIANGLE_FAN);
+        glColor3f(0.0, 0.0, 0.1);
+        //glVertex3f(-0.80, i/24, 0.0);
+        for(int k = 0; k < 360; k+=1){
+            glColor3f(1.0, 0.0, 0.0);
+            glVertex3f((i*cos(k)/24)-0.25, i, (sin(k)/24)-0.1);
+        }
+        glEnd();
+    }
+    
+    //TODO: Hélices 
+    
+    
+}
+
 
 void display(){
 
@@ -244,6 +276,7 @@ void display(){
     drawBodyCentral();
     drawTail();
     drawHelixBase();
+    drawHelixes();
 
     glFlush();
     glutSwapBuffers();
@@ -255,13 +288,25 @@ void KeyInput(unsigned char key, int x, int y){
     case 'w':
         rotate_x += 5;
         break;
+    case 'W':
+        rotate_x += 5;
+        break;
     case 's':
         rotate_x -= 5;
         break;
-    case 'a':
+    case 'S':
+        rotate_x -= 5;
+        break;
+    case 'a':    
+        rotate_y += 5;
+        break;
+    case 'A':
         rotate_y += 5;
         break;
     case 'd':
+        rotate_y -= 5;
+        break;
+    case 'D':
         rotate_y -= 5;
         break;
     case 27:
