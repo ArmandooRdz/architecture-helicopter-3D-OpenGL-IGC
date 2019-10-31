@@ -18,30 +18,60 @@
 
 using namespace std;
 
-void display();
-void specialKeys();
+float rotate_x = -10;
+float rotate_y = -10;
 
-double rotate_x = -10;
-double rotate_y = -10;
+// Position of three helixes
+float position_helixes[][2] = {{-1, -0.095},
+                               {0.45, -0.1},
+                               {-0.6, -0.8},
+                               {0.09, 0.6},
+                               {-0.7, 0.5},
+                               {0.2, -0.7}};
+// true = add | false = subtract
+bool add_helix_0_x = true;
+bool add_helix_0_z = false;
+bool add_helix_1_x = false;
+bool add_helix_1_z = true;
 
+bool add_helix_2_x = true;
+bool add_helix_2_z = false;
+bool add_helix_3_x = false;
+bool add_helix_3_z = true;
 
+bool add_helix_4_x = true;
+bool add_helix_4_y = false;
+bool add_helix_5_x = true;
+bool add_helix_5_y = true;
 
-
+float rotate_helix11_x = -1;
+float rotate_helix11_z = -0.095;
+float rotate_helix12_x = 0.45;
+float rotate_helix12_z = -0.1;
+float rotate_helix21_x = -0.6;
+float rotate_helix21_z = -0.8;
+float rotate_helix22_x = 0.09;
+float rotate_helix22_z = 0.6;
+float rotate_helix31_x = -0.7;
+float rotate_helix31_z = 0.5;
+float rotate_helix32_x = 0.2;
+float rotate_helix32_z = -0.7;
 
 /**
  * Dibujado del centro del cuerpo del helicuptero.
  **/
-void drawBodyCentral(){
+void drawBodyCentral()
+{
 
     // Side front - Gray
     glBegin(GL_POLYGON);
     glColor3f(0.50, 0.50, 0.50);
-    glVertex3f(-0.10, -0.20, -0.23); 
-    glVertex3f(0.0, 0.0, -0.23); 
-    glVertex3f(0.0, 0.25, -0.23); 
-    glVertex3f(-0.50, 0.25, -0.25); 
+    glVertex3f(-0.10, -0.20, -0.23);
+    glVertex3f(0.0, 0.0, -0.23);
+    glVertex3f(0.0, 0.25, -0.23);
+    glVertex3f(-0.50, 0.25, -0.25);
     glVertex3f(-0.65, 0.0, -0.25);
-    glVertex3f(-0.50, -0.20, -0.25); 
+    glVertex3f(-0.50, -0.20, -0.25);
     glEnd();
 
     // Side back - White
@@ -57,7 +87,7 @@ void drawBodyCentral(){
 
     // Side rigth - Purple
     glBegin(GL_POLYGON);
-    glColor3f(1.0, 0.0, 1.0); 
+    glColor3f(1.0, 0.0, 1.0);
     glVertex3f(0.0, 0.0, -0.23);
     glVertex3f(0.0, 0.25, -0.23);
     glVertex3f(0.0, 0.25, 0.03);
@@ -94,14 +124,13 @@ void drawBodyCentral(){
     glVertex3f(-0.50, -0.20, 0.05);
     glVertex3f(-0.50, -0.20, -0.25);
     glEnd();
-
 }
-
 
 /**
  * Dibujado de la parte trasera del helicopero
  **/
-void drawTail(){
+void drawTail()
+{
 
     // front - red
     glBegin(GL_POLYGON);
@@ -139,8 +168,7 @@ void drawTail(){
     glVertex3f(0.6, 0.25, -0.15);
     glEnd();
 
-
-    // Objeto No.3 del pdf 
+    // Objeto No.3 del pdf
     // front - blue
     glBegin(GL_POLYGON);
     glColor3f(0.2, 0.2, 0.7);
@@ -176,14 +204,13 @@ void drawTail(){
     glVertex3f(0.6, 0.15, -0.15);
     glVertex3f(0.75, 0.15, -0.10);
     glEnd();
-
 }
-
 
 /**
  *  Dibujado de la base de las hélices 
  **/
-void drawHelixBase(){
+void drawHelixBase()
+{
 
     // up - red
     glBegin(GL_POLYGON);
@@ -231,40 +258,96 @@ void drawHelixBase(){
     glEnd();
 }
 
-
 /**
  * Dibujado de las hélices con un cilindro en el centro.
  */
-void drawHelixes(){
+void drawHelixes()
+{
 
     // Cilindro central
-   glBegin(GL_QUAD_STRIP);
-    for(int j = 0; j < 360; j+=1){
+    glBegin(GL_QUAD_STRIP);
+    for (int j = 0; j < 360; j += 1)
+    {
         glColor3f(1.0, 1.0, 0.0);
-        glVertex3f((cos(j)/24)-0.25,0.20, (sin(j)/24)-0.1);
+        glVertex3f((cos(j) / 24) - 0.25, 0.20, (sin(j) / 24) - 0.1);
         glColor3f(0.0, 1.0, 0.0);
-        glVertex3f((cos(j)/24)-0.25,0.35, (sin(j)/24)-0.1);
+        glVertex3f((cos(j) / 24) - 0.25, 0.35, (sin(j) / 24) - 0.1);
     }
     glEnd();
-    for(int i = 0; i >= -1; i-=2){
+    for (int i = 0; i >= -1; i -= 2)
+    {
         glBegin(GL_TRIANGLE_FAN);
         glColor3f(0.0, 0.0, 0.1);
         //glVertex3f(-0.80, i/24, 0.0);
-        for(int k = 0; k < 360; k+=1){
+        for (int k = 0; k < 360; k += 1)
+        {
             glColor3f(1.0, 0.0, 0.0);
-            glVertex3f((i*cos(k)/24)-0.25, i, (sin(k)/24)-0.1);
+            glVertex3f((i * cos(k) / 24) - 0.25, i, (sin(k) / 24) - 0.1);
         }
         glEnd();
     }
-    
-    //TODO: Hélices 
-    
-    
+
+    glTranslatef(0.0, 0.0, 0.0);
+    glBegin(GL_LINES);
+    glVertex3f(position_helixes[0][0], 0.32, position_helixes[0][1]); // helice1
+    glVertex3f(position_helixes[1][0], 0.32, position_helixes[1][1]);
+    glVertex3f(position_helixes[2][0], 0.32, position_helixes[2][1]); // helice2
+    glVertex3f(position_helixes[3][0], 0.32, position_helixes[3][1]);
+    glVertex3f(position_helixes[4][0], 0.32, position_helixes[4][1]); // helice3
+    glVertex3f(position_helixes[5][0], 0.32, position_helixes[5][1]);
+    glEnd();
+
+    //TODO: girar Hélices
+    /*for (int i = 0; i < 6; i++)
+    {
+        if (i == 0) // helice1
+        {
+            if(add_helix_0_x)
+                position_helixes[0][0] +=0.01;
+            else
+                position_helixes[0][0] -=0.01;
+            if(position_helixes[0][0] <= -1)
+                add_helix_0_x = true;
+            if(position_helixes[0][0] >= 0.45)
+                add_helix_0_x = false;
+            if(add_helix_0_z)
+                position_helixes[0][1] += 0.01;
+            else
+                position_helixes[0][1] -= 0.01;    
+            if(position_helixes[0][1] <= -0.9)
+                add_helix_0_z = true;
+            if(position_helixes[0][1] >= 0.75)
+                add_helix_0_z = false;       
+
+            if(add_helix_1_x)
+                position_helixes[1][0] +=0.01;
+            else
+                position_helixes[1][0] -=0.01;
+            if(position_helixes[1][0] <= -1)
+                add_helix_0_x = true;
+            if(position_helixes[1][0] >= 0.45)
+                add_helix_0_x = false;
+            if(add_helix_0_z)
+                position_helixes[1][1] += 0.01;
+            else
+                position_helixes[1][1] -= 0.01;    
+            if(position_helixes[1][1] <= -0.9)
+                add_helix_0_z = true;
+            if(position_helixes[1][1] >= 0.75)
+                add_helix_0_z = false;       
+
+        }
+        else if (i == 2) // helice2
+        {
+        }
+        else if (i == 4) // helice3
+        {
+        }
+    }*/
 }
 
-
-void display(){
-
+void display()
+{
     //  Borrar pantalla y Z-buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     // Resetear transformaciones
@@ -278,11 +361,14 @@ void display(){
     drawHelixBase();
     drawHelixes();
 
+    glutPostRedisplay();
+
     glFlush();
     glutSwapBuffers();
 }
 
-void KeyInput(unsigned char key, int x, int y){
+void KeyInput(unsigned char key, int x, int y)
+{
     switch (key)
     {
     case 'w':
@@ -297,7 +383,7 @@ void KeyInput(unsigned char key, int x, int y){
     case 'S':
         rotate_x -= 5;
         break;
-    case 'a':    
+    case 'a':
         rotate_y += 5;
         break;
     case 'A':
@@ -318,13 +404,14 @@ void KeyInput(unsigned char key, int x, int y){
     glutPostRedisplay();
 }
 
-
-void interactionDescription(){
+void interactionDescription()
+{
     cout << "Press w/s/a/d to rotate the helicopter." << endl;
     cout << "Press [Escape] to exit" << endl;
 }
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
     interactionDescription();
     //  Inicializar los parámetros GLUT y de usuario proceso
     glutInit(&argc, argv);
